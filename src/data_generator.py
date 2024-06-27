@@ -1,5 +1,5 @@
-from src.KafkaProducerWrapper import KafkaProducerWrapper
-from src.utils import generate_and_send_data
+from KafkaProducerWrapper import KafkaProducerWrapper
+from utils import generate_and_send_data
 import logging
 import json
 import base64
@@ -7,7 +7,6 @@ import zlib
 import argparse
 import uuid
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 
 def compress_array(array):

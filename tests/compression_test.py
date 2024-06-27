@@ -6,7 +6,7 @@ import os
 # Add the 'src' folder to the Python path
 sys.path.append(os.path.abspath('src'))
 
-from data_generator import compress_array
+from src.data_generator import compress_array
 from utils import decompress_data
 
 

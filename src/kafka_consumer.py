@@ -3,7 +3,7 @@ import logging
 from kafka import KafkaConsumer
 from PIL import Image
 from datetime import datetime
-from src.utils import json_deserializer, array_from_compressed_data
+from utils import json_deserializer, array_from_compressed_data
 
 
 logging.basicConfig(level=logging.INFO)
