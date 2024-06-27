@@ -5,10 +5,9 @@ from PIL import Image
 from datetime import datetime
 from src.utils import json_deserializer, array_from_compressed_data
 
-# Setup logging
+
 logging.basicConfig(level=logging.INFO)
 
-# Initialize KafkaConsumer with appropriate configurations
 consumer = KafkaConsumer(
     'data-stream',
     bootstrap_servers=['localhost:29092'],
