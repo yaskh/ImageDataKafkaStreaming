@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath('src'))
 import unittest
 from unittest.mock import patch
 from kafka import KafkaProducer
-from KafkaProducerWrapper import KafkaProducerWrapper
+from src.KafkaProducerWrapper import KafkaProducerWrapper
 
 class TestKafkaProducerWrapper(unittest.TestCase):
     @patch.object(KafkaProducer, 'send')

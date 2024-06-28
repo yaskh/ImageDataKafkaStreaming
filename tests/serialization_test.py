@@ -2,7 +2,7 @@ import unittest
 import sys
 sys.path.append('../src/')
 from src.utils import json_serializer
-from src.kafka_consumer import json_deserializer
+from src.utils import json_deserializer
 
 
 class TestSerialization(unittest.TestCase):

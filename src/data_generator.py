@@ -26,7 +26,8 @@ parser.add_argument('-cid', '--customer_id', type=str, default=str(uuid.uuid4())
                     help='Customer ID (default: generate new UUID)')
 parser.add_argument('-n', '--num_messages', type=int, default=1,
                     help='Number of messages to generate (default: 1)')
-
+parser.add_argument('-t', '--topic', type=str, default='data-stream',
+                    help='Kafka topic to send messages to (default: data-stream)')
 parser.add_argument('-bs', '--bootstrap_servers', type=str, default='localhost:29092',
                     help='Kafka bootstrap servers (default: localhost:29092)')
 parser.add_argument('-rt', '--request_timeout_ms', type=int, default=300000,
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     )
     try:
         for i in range(args.num_messages):
-            generate_and_send_data(args.customer_id, producer)
+            generate_and_send_data(args.customer_id, args.topic, producer)
     except KeyboardInterrupt:
         logging.info("Terminated by user")
     finally:

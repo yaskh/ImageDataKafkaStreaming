@@ -17,7 +17,7 @@ def json_serializer(data):
     return json.dumps(data).encode('utf-8')
 
 
-def generate_and_send_data(customer_id, producer):
+def generate_and_send_data(customer_id, topic, producer):
     """ Generate data, compress it, and send via Kafka. """
     array_id = str(uuid.uuid4())
     creation_time = time.time()
@@ -33,7 +33,7 @@ def generate_and_send_data(customer_id, producer):
         "creation_time": creation_time
     }
     key = str(uuid.uuid4()).encode('utf-8')
-    producer.send('data-stream', key=key, value=message)
+    producer.send(topic, key=key, value=message)
     logging.info(f"Sent message with key {key.decode('utf-8')}")
 
 def decompress_data(encoded_data):
