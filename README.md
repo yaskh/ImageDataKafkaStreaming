@@ -43,6 +43,6 @@ To start the consumer, which receives, decompresses, and saves the image data, r
 
 
 ## Viewing the logs 
-Test cases: docker-compose logs tests
-Kafka Producer: docker-compose logs kafka_producer
-Kafka Consumer: docker-compose logs kafka_consumer
+- Test cases: docker-compose logs tests
+- Kafka Producer: docker-compose logs kafka_producer
+- Kafka Consumer: docker-compose logs kafka_consumer
