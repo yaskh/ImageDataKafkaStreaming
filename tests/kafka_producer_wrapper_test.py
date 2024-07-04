@@ -13,7 +13,7 @@ class TestKafkaProducerWrapper(unittest.TestCase):
     def test_send_fail(self, mock_flush, mock_send):
         # Arrange
         mock_send.side_effect = Exception("Simulated send failure")
-        bootstrap_servers = 'localhost:9092'
+        bootstrap_servers = 'kafka:9092'
         value_serializer = lambda v: v.encode('utf-8')
         request_timeout_ms = 1000
         max_request_size = 1048576

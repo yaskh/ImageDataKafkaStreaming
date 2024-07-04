@@ -26,3 +26,32 @@ services:
       KAFKA_REPLICA_FETCH_MAX_BYTES: 15728640
       KAFKA_MESSAGE_MAX_BYTES: 15728640
       KAFKA_MAX_MESSAGE_BYTES: 15728640
+  
+  tests:
+    build: .
+    depends_on:
+      - kafka
+    volumes:
+      - .:/src
+    command: sh -c "sleep 20 &&  pytest"
+
+  kafka_producer:
+    build: .
+    depends_on:
+      - kafka
+      - tests
+    environment:
+      KAFKA_BROKER: kafka:9092
+    volumes:
+      - .:/src
+    command: sh -c "sleep 20 && python src/data_generator.py -bs kafka:9092 -n 10"
+
+  kafka_consumer:
+    build: .
+    depends_on:
+      - kafka_producer
+    environment:
+      KAFKA_BROKER: kafka:9092
+    volumes:
+      - ./output:/src/output
+    command: sh -c "sleep 20 && python src/kafka_consumer.py -bs kafka:9092"

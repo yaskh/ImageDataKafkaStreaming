@@ -1,33 +1,23 @@
 # Image Data Streaming Application
 
-This application demonstrates the streaming of compressed image data using Apache Kafka. It includes a producer component that generates and sends compressed image data, and a consumer component that receives, decompresses, and saves the data as images.
-
-## Prerequisites
-
-- Apache Kafka is are accessible.
-- Python 3.7+ with packages: `kafka-python`, `numpy`, `Pillow`, `zlib`, `base64`.
+This application demonstrates how to stream compressed image data using Apache Kafka. It includes a producer component that generates and sends compressed image data, and a consumer component that receives, decompresses, and saves the data as images.
 
 ## Installation
 
-### Install Required Python Packages
+No additional installation is required; Docker Compose handles all necessary installations.
 
-Run the following command to install the necessary Python packages:
+### Starting the Script Setup
 
-```bash
-pip install -r requirements.txt
-```
-
-### Kafka and ZooKeeper Setup
-
-To start run the command
+To initiate the application, run the following command. This starts Zookeeper and Kafka, runs the tests, activates the Producer, and finally, the Consumer. The output will be saved to a local directory named `output`.
 
 ```bash
- docker-compose up -d
+docker-compose up -d
+
  ```
 
-## Usage
-
-### Starting the Producer
+## CLI Arguments 
+**Modify the command in the docker-compose file**
+### Kafka Producer
 
 Run `data_generator.py` from the command line, specifying the desired options. Below are the available command-line arguments:
 
@@ -38,13 +28,9 @@ Run `data_generator.py` from the command line, specifying the desired options. B
 - `-n`, `--num_messages`: Number of messages to generate and send (required).
 - `-cid`, `--customer_id`: Customer ID to use in message generation (required).
 
-Example command:
 
-```bash
-python data_generator.py -n 10
-```
-
-### Starting the Consumer
+### Kafka Consumer
+**Modify the command in the docker-compose file**
 
 To start the consumer, which receives, decompresses, and saves the image data, run:
 
@@ -56,14 +42,7 @@ To start the consumer, which receives, decompresses, and saves the image data, r
 - `-o`, `--output_directory`, default='output', Output directory for saving images (default: `output`)
 
 
-
-
-
-```bash
-python src/consumer.py
-```
-## Running tests
-To run tests, run the following command:
-
-```bash
-pytest
+## Viewing the logs 
+Test cases: docker-compose logs tests
+Kafka Producer: docker-compose logs kafka_producer
+Kafka Consumer: docker-compose logs kafka_consumer
